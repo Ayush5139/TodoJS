@@ -56,15 +56,27 @@
     }
     let cardCount = 1;
     let cardId = "";
+    let arr = []
     function visible() {
         document.getElementById("vis").style.display = "block";
         console.log("Button Working")
     }
 
+    function goBack(){
+        document.getElementById("backbtn").remove()
+        document.getElementById("div2").style = "justify-content:flex-start"
+        for(let i=0;i<arr.length;i++){
+           document.querySelector("."+arr[i]).style.display = "block";
+        }
+        document.querySelector(".div3").style.display="none";
+        document.getElementById("btn1").style.display="block"
+    }
     function newdiv() {
         let newcard = document.createElement("div")
         newcard.id = "card"
         newcard.className += "card-" + cardCount;
+        arr.push(newcard.className)
+        console.log(arr)
         let titlep = document.createElement("p")
         titlep.className = "pcard"
         titlep.addEventListener("click", function () {
@@ -88,7 +100,13 @@
         delbutton.className = "fa fa-trash"
         delbutton.id = "fatrash"
         delbutton.addEventListener("click", function delelee(e) {
+            let index1 = arr.indexOf(newcard.className);
+            if(index1>-1){
+                arr.splice(index1,1);
+            }
             e.target.parentElement.remove()
+            console.log(arr)
+            goBack();
         })
         newcard.append(delbutton)
         // cards.push(newcard)
@@ -115,14 +133,13 @@
 //   transform: translate(-50%, -50%);
 //   margin:0`
 
-        for(let i=1;i<cardCount;i++){
+        for(let i=0;i<arr.length;i++){
             console.log(cardCount)
-            if("card-"+i == id ){
+            if(arr[i] == id ){
                 document.getElementById("div2").style = "justify-content:center;"
             }
-            else if("card-"+i != id ){
-                console.log(".card-"+i)
-                document.querySelector(".card-"+i).style.display = "none";
+            else if(arr[i] != id ){
+                document.querySelector("."+arr[i]).style.display = "none";
             }
         }
 
@@ -139,16 +156,10 @@
         document.body.append(backbtn)
         backbtn.id = "backbtn"
         backbtn.addEventListener("click",goBack)
+        document.getElementById("btn1").style.display="none";
     }
 
-    function goBack(){
-        document.getElementById("backbtn").remove()
-        document.getElementById("div2").style = "justify-content:flex-start"
-        for(let i=1;i<cardCount;i++){
-           document.querySelector(".card-"+i).style.display = "block";
-        }
-        document.querySelector(".div3").style.display="none";
-    }
+    
 
 
     function put() {
@@ -204,6 +215,7 @@
         document.getElementById("vis1").style.display = "none";
 
     }
+    
 
     // function display(){
     //     let lists = document.getElementById("list")
