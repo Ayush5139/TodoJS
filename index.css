@@ -1,0 +1,136 @@
+body{
+    background-color: purple;
+}
+
+.s1{
+    background-color: black;
+    color: white;
+    padding: 0.5%;
+}
+
+.h1{
+    background-color: white;
+    color: blue;
+    padding: 0.5%;
+}
+
+#btn1{
+    margin-left: 85%;
+    font-size: 25px;
+    background-color: yellow;
+}
+.div1{
+    border: black 1px solid;
+    width: 30%;
+    margin-left: 35%;
+    background-color: black
+}
+
+.p1{
+    font-size: 20px;
+    margin-left: 5%;
+    color: white;
+    font-size: 25px;
+    padding: 0%;
+    
+}
+
+#Task{
+    margin: 5%;
+    font-size: 15px;
+    width: 87%;
+}
+
+#submit{
+    margin: 3%;
+    font-size: 15px;
+}
+
+#close{
+    margin: 3%;
+    font-size: 15px;
+    margin-left: 58%;
+}
+
+#card{
+    background-color: black;
+    color: white;
+    margin: 0%;
+}
+
+.pcard{
+    font-size: 25px;
+    text-transform: capitalize;
+    margin-left: 5%;
+}
+
+#div2{
+    display: flex;
+    margin: 0%;
+    flex-wrap: wrap;
+}
+
+#card{
+    height: 350px;
+    width: 300px;
+    border: white 1px solid;
+    margin: 2%;
+    
+}
+
+#deldiv{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#faplus{
+    margin-right: 75%;
+    margin-left: 2%;
+    color: red;
+    font-size: 23px;
+    padding: 0%;
+}
+
+#fatrash{
+    font-size: 23px;
+    margin: 2%;
+}
+
+.div3{
+    background-color: black;
+    border: black 1px solid;
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 0%;
+}
+
+#Task1{
+    margin: 5%;
+    font-size: 15px;
+    width: 87%;
+}
+
+#submit1{
+    margin: 3%;
+    font-size: 15px;
+}
+
+#close1{
+    margin: 3%;
+    font-size: 15px;
+    margin-left: 58%;
+}
+
+.parap{
+    text-transform: capitalize;
+    font-size: 20px;
+    margin: 5%;
+}
+
+.inbut{
+    font-size: 12px;
+    margin-left: 15%;
+    background-color: yellow;
+    color: purple;
+
+}

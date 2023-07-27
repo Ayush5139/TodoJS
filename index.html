@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body>
+    <h1><span class="s1">TODO</span> <span class="h1">APP</span></h1>
+    <button id="btn1" onclick="visible()"> <i class="fa-solid fa-plus"></i> Add New Task</button>
+    <div class="div1" style="display: none;" id="vis">
+        <p class="p1">Add New Task</p>
+        <hr>
+        <form>
+            <input type="text" name="task" id="Task"> <br>
+            <button id="submit" onclick="put(),newdiv()">Add Task</button>
+            <button id="close">Close</button>
+        </form>
+    </div>
+    <div class="div3" style="display: none;" id="vis1">
+        <p class="p1">Add New Task</p1>
+            <hr>
+        <form>
+            <input type="text" name="task" id="Task1"> <br>
+            <button id="submit1">Add Tasks</button>
+            <button id="close1">Close</button>
+        </form>
+    </div>
+    <div id="div2">
+        <div class="card">
+            <p id="title" style="display:None;"></p>
+            <div id="indiv"></div>
+        </div>
+    </div>
+    <!-- <button id="mark" onclick="newdiv()">Add Task</button>
+    <div id="deldiv"></div>
+    <button id="newt" onclick="addt()">new task</button>
+    <button id="dele">Delete</button>
+    <i class="fa-solid fa-plus"></i>  -->
+    <div id="list"></div>
+</body>
+
+</html>
+
+<script>
+    window.onload = function () {
+        document.getElementById("submit1").addEventListener("click", put1);
+        document.getElementById("close").addEventListener("click", close);
+        document.getElementById("close1").addEventListener("click", close1);
+    }
+    let cardCount = 1;
+    let cardId = "";
+    function visible() {
+        document.getElementById("vis").style.display = "block";
+        console.log("Button Working")
+    }
+
+    function newdiv() {
+        let newcard = document.createElement("div")
+        newcard.id = "card"
+        newcard.className += "card-" + cardCount;
+        let titlep = document.createElement("p")
+        titlep.className = "pcard"
+        titlep.addEventListener("click", function () {
+            showCard(newcard.className)
+        })
+        let temptit = document.getElementById("Task").value
+        titlep.innerText = temptit
+        newcard.append(titlep)
+        let ehr = document.createElement("hr")
+        newcard.append(ehr)
+        let listed = document.createElement("ul")
+        newcard.append(listed)
+        let addbutton = document.createElement("i")
+        addbutton.className = "fa-solid fa-plus"
+        addbutton.id = "faplus"
+        addbutton.addEventListener("click", () => {
+            addt(newcard.className);
+        })
+        newcard.append(addbutton)
+        let delbutton = document.createElement("i")
+        delbutton.className = "fa fa-trash"
+        delbutton.id = "fatrash"
+        delbutton.addEventListener("click", function delelee(e) {
+            e.target.parentElement.remove()
+        })
+        newcard.append(delbutton)
+        // cards.push(newcard)
+        // display(cards)
+        let temp = document.getElementById("div2")
+        temp.append(newcard)
+        cardCount = cardCount + 1;
+
+    }
+
+    function showCard(id) {
+        console.log(id)
+//         let newDiv = document.querySelector("." + id)
+//         console.log(newDiv.innerHTML)
+//         document.getElementById("div2").style.display = "none"
+//         let newelement = document.createElement("div")
+//         newelement.className="newelement"
+//         newelement.id = "card"
+//         newelement.innerHTML = newDiv.innerHTML
+//         document.body.append(newelement)
+//         newelement.style = `position:absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   margin:0`
+
+        for(let i=1;i<cardCount;i++){
+            console.log(cardCount)
+            if("card-"+i == id ){
+                document.getElementById("div2").style = "justify-content:center;"
+            }
+            else if("card-"+i != id ){
+                console.log(".card-"+i)
+                document.querySelector(".card-"+i).style.display = "none";
+            }
+        }
+
+        let backbtn = document.createElement("a") 
+        backbtn.innerHTML = "&larr; Back"
+        backbtn.style = `    position: absolute;
+    top: 21%;
+    left: 9%;
+    transform: translate(-9%, -21%);
+    color: white;
+    font-size:24px;
+    font-weight:bold;
+    `
+        document.body.append(backbtn)
+        backbtn.id = "backbtn"
+        backbtn.addEventListener("click",goBack)
+    }
+
+    function goBack(){
+        document.getElementById("backbtn").remove()
+        document.getElementById("div2").style = "justify-content:flex-start"
+        for(let i=1;i<cardCount;i++){
+           document.querySelector(".card-"+i).style.display = "block";
+        }
+        document.querySelector(".div3").style.display="none";
+    }
+
+
+    function put() {
+        let pull = document.getElementById("Task").value
+        let par2 = document.getElementById("title")
+        par2.innerText = pull
+        document.getElementById("vis").style.display = "none";
+        event.preventDefault();
+    }
+
+    function addt(cls) {
+        document.getElementById("vis1").style.display = "block";
+        cardId = cls;
+    }
+
+    function put1(e) {
+        e.preventDefault();
+        let pull2 = document.getElementById("Task1").value
+        const para = document.createElement("p")
+        para.className = "parap"
+        let mk2 = document.getElementById("mark")
+        let butt = document.createElement("button")
+        butt.className = "inbut"
+        butt.innerText = "Mark As Done"
+        butt.addEventListener("click", function line() {
+            para.style.textDecoration = "Line-Through"
+        })
+        para.append(pull2, butt)
+        document.getElementById("vis1").style.display = "none";
+        let infiv = document.querySelector("." + cardId);
+
+        infiv.append(para)
+        cardId = "";
+    }
+
+    function additem(tag) {
+        let subbutt = document.getElementById("submit")
+        subbutt.addEventListener("click", function m1() {
+            let li = document.createElement("li")
+            let inp = document.getElementById("Task1").value
+            li.innerText = inp
+            tag.append(li)
+        })
+    }
+
+    function close() {
+        event.preventDefault();
+        document.getElementById("vis").style.display = "none";
+    }
+
+    function close1() {
+        event.preventDefault();
+        document.getElementById("vis1").style.display = "none";
+
+    }
+
+    // function display(){
+    //     let lists = document.getElementById("list")
+    //     for (i=0;i<cards.length;i++){
+    //         lists.appendChild(cards[i])
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // function newdiv(){
+    //     let newcard = document.createElement("div")
+    //     // newcard.style.height = "50px"
+    //     // newcard.style.backgroundColor = "black"
+    //     newcard.className = "card"
+    //     let titlep = document.createElement("p")
+    //     let temptit = document.getElementById("Task").value
+    //     titlep.innerText = temptit
+    //     newcard.append(titlep)
+    //     let ehr = document.createElement("hr")
+    //     newcard.append(ehr)
+    //     let temp = document.getElementById("div2")
+    //     temp.append(newcard)
+
+    // }
+
+
+
+
+
+
+</script>
